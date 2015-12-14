@@ -102,10 +102,11 @@ public class Hanoi {
     }
 
     public static void main(String[] args) {
-        Hanoi h = new Hanoi(4);
+        Hanoi h = new Hanoi(5);
         Pole from=h.getPole(0);
         Pole mediary=h.getPole(1);
         Pole to=h.getPole(2);
+        h.printPoles();
         h.moveStack(from, mediary, to, from.getSize());
     }
 
