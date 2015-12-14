@@ -25,7 +25,7 @@ public class Hanoi {
     }
 
     public Pole getPole(int n) {
-      return  n>=poleList.size()? null: poleList.get(n);
+        return n >= poleList.size() ? null : poleList.get(n);
     }
 
 
@@ -33,32 +33,33 @@ public class Hanoi {
      * Moves stack from $from to $to using pole $mediary
      */
     private void moveStack(Pole from, Pole mediary, Pole to, int disks) {
-           //If you don't want to watch the pole moving process
-            //comment out the <code>printPoles()</code> method calls
+        //If you don't want to watch the pole moving process
+        //comment out the <code>printPoles()</code> method calls
 
 
-            switch(disks) {
-                case 0: return;  //nothing to move
+        switch (disks) {
+            case 0:
+                return;  //nothing to move
 
-                case 1:
-                    //check that moving to other pole is allowed, if not, then switch stacks around
-                    if(!from.popTo(to)) {
-                        moveStack(to, from, mediary, to.getSize());
-                        from.popTo(to);
-                        moveStack(mediary, from, to, mediary.getSize());
-                    }
-                    printPoles();
-
-                    break;
-
-                default:
-                    moveStack(from, to, mediary, disks-1);
+            case 1:
+                //check that moving to other pole is allowed, if not, then switch stacks around
+                if (!from.popTo(to)) {
+                    moveStack(to, from, mediary, to.getSize());
                     from.popTo(to);
-                    printPoles();
-                    moveStack(mediary, from, to, disks-1);
+                    moveStack(mediary, from, to, mediary.getSize());
+                }
+                printPoles();
+
+                break;
+
+            default:
+                moveStack(from, to, mediary, disks - 1);
+                from.popTo(to);
+                printPoles();
+                moveStack(mediary, from, to, disks - 1);
 
 
-            }
+        }
     }
 
     /**
@@ -70,7 +71,6 @@ public class Hanoi {
         System.out.println();
         for (int i = 0; i < poles.size(); i++) System.out.print("\tP: " + i);
         System.out.println();
-
 
 
         int max = 0;
@@ -103,9 +103,9 @@ public class Hanoi {
 
     public static void main(String[] args) {
         Hanoi h = new Hanoi(5);
-        Pole from=h.getPole(0);
-        Pole mediary=h.getPole(1);
-        Pole to=h.getPole(2);
+        Pole from = h.getPole(0);
+        Pole mediary = h.getPole(1);
+        Pole to = h.getPole(2);
         h.printPoles();
         h.moveStack(from, mediary, to, from.getSize());
     }
